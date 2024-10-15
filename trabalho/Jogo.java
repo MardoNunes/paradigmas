@@ -3,34 +3,47 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Jogo {
-    private JFrame telaInicio;
-    private JFrame telaEscolha;
+    private JFrame telaInicio;  // Mantém a tela inicial
+    private JFrame telaEscolha;  // Mantém a tela de escolha de jogadores
+    private JPanel painelPrincipal;  // Painel principal que conterá as diferentes "telas"
+    private CardLayout layout;  // Layout que gerencia as trocas de telas
     private JButton jogar;
     private JButton sair;
     private Image imagemFundo;
 
-     
-
-    public void telaInicial() {
+    public Jogo() {
         // Configurando a janela principal
-        this.telaInicio = new JFrame();
-        telaInicio.setTitle("Banco Imobiliário"); // nome da aba
+        this.telaInicio = new JFrame();  // Mantém a variável telaInicio para a janela principal
+        telaInicio.setTitle("Banco Imobiliário");
         telaInicio.setSize(1280, 720);
-        telaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // fechar o jogo no X da janela
+        telaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         telaInicio.setLayout(new BorderLayout());
 
-        
-        // Carregar a imagem de fundo
-        imagemFundo = new ImageIcon("BancoImobiliario.png").getImage(); // Substitua pelo caminho da sua imagem
+        // Inicializar o CardLayout e o painel principal
+        layout = new CardLayout();
+        painelPrincipal = new JPanel(layout);
 
-        // Painel principal para exibir a imagem de fundo
+        // Adiciona a primeira tela (tela inicial)
+        painelPrincipal.add(criarTelaInicial(), "TelaInicial");
+
+        // Adiciona a tela de escolha de jogadores
+        painelPrincipal.add(criarTelaEscolha(), "EscolhaJogadores");
+
+        // Adiciona o painel principal ao JFrame
+        telaInicio.add(painelPrincipal);
+        telaInicio.setVisible(true);
+    }
+
+    // Método para criar a tela inicial
+    private JPanel criarTelaInicial() {
         JPanel panelFundo = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(imagemFundo, 0, 0, getWidth(), getHeight(), this); // Desenha a imagem de fundo redimensionada
+                // Carregar a imagem de fundo (substitua pelo caminho correto da sua imagem)
+                imagemFundo = new ImageIcon("BancoImobiliario.png").getImage();
+                g.drawImage(imagemFundo, 0, 0, getWidth(), getHeight(), this);  // Desenha a imagem de fundo redimensionada
             }
         };
         panelFundo.setLayout(new BorderLayout());  // Usa BorderLayout para organizar componentes
@@ -41,19 +54,18 @@ public class Jogo {
         panelBotoes.setOpaque(false);  // Deixa o painel transparente para exibir o fundo
 
         // Adicionando espaçamento entre os botões
-        panelBotoes.setBorder(BorderFactory.createEmptyBorder(400, 50, 200, 50)); // Margens ao redor do painel
+        panelBotoes.setBorder(BorderFactory.createEmptyBorder(400, 50, 200, 50));  // Margens ao redor do painel
 
         // Botão "Jogar"
         jogar = new JButton("Jogar");
         jogar.setFont(new Font("Arial", Font.BOLD, 18));
-        jogar.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o botão horizontalmente
+        jogar.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o botão
         jogar.setPreferredSize(new Dimension(200, 50));  // Define um tamanho fixo para o botão
-        jogar.setMaximumSize(new Dimension(200, 50));    // Impede que ele cresça além disso
-        jogar.addActionListener(new ActionListener(){
+        jogar.setMaximumSize(new Dimension(200, 50));  // Impede que ele cresça além disso
+        jogar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-                //ir para a escolha de de numero de jogadores e nomes/personagens
-                choices();
+            public void actionPerformed(ActionEvent e) {
+                layout.show(painelPrincipal, "EscolhaJogadores");  // Troca para a tela de escolha de jogadores
             }
         });
         panelBotoes.add(jogar);  // Adiciona botão "Jogar" ao painel
@@ -65,8 +77,8 @@ public class Jogo {
         sair = new JButton("Sair");
         sair.setFont(new Font("Arial", Font.BOLD, 18));
         sair.setPreferredSize(new Dimension(200, 50));  // Define um tamanho fixo para o botão
-        sair.setMaximumSize(new Dimension(200, 50));    // Impede que ele cresça além disso
-        sair.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o botão horizontalmente
+        sair.setMaximumSize(new Dimension(200, 50));  // Impede que ele cresça além disso
+        sair.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o botão
         sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,62 +90,39 @@ public class Jogo {
         // Adicionar o painel de botões ao centro do painel de fundo
         panelFundo.add(panelBotoes, BorderLayout.CENTER);
 
-        // Adiciona o painel de fundo (com os botões) ao centro da janela
-        telaInicio.add(panelFundo, BorderLayout.CENTER);
-
-
-        // Mostrar a tela
-        telaInicio.setVisible(true);
+        return panelFundo;
     }
 
-    //essa função escolherá o numero de jogadores e nomes/personagens
-    private void choices(){
-        this.telaEscolha = new JFrame();
-        telaEscolha.setSize(1280, 720);
-        telaEscolha.setTitle("Banco Imobiliário");
-        telaEscolha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // fechar o jogo no X da janela
-        telaEscolha.setLayout(new BorderLayout());
-
-
-
-
-
+    // Método para criar a tela de escolha de jogadores
+    private JPanel criarTelaEscolha() {
         JPanel panelEscolha = new JPanel();
-        panelEscolha.setLayout(new BoxLayout(panelEscolha, BoxLayout.Y_AXIS));  // Organiza os botões verticalmente
-        panelEscolha.setOpaque(false);  // Deixa o painel transparente para exibir o fundo
+        panelEscolha.setLayout(new BoxLayout(panelEscolha, BoxLayout.Y_AXIS));  // Organiza verticalmente
+        panelEscolha.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));  // Margens ao redor do painel
 
-        //label para escolher o numero de jogadores
+        // Label para escolher o número de jogadores
         JLabel label = new JLabel("Selecione o número de jogadores:");
+        label.setFont(new Font("Arial", Font.PLAIN, 18));
         panelEscolha.add(label);
-
-        // Adicionando espaçamento entre os botões
-        panelEscolha.setBorder(BorderFactory.createEmptyBorder(400, 50, 200, 50)); // Margens ao redor do painel
 
         Integer[] opcoes = {2, 3, 4, 5, 6};  // Opções de número de jogadores
         JComboBox<Integer> comboBox = new JComboBox<>(opcoes);
-        panelEscolha.add(label);
         panelEscolha.add(comboBox);
 
-
-        //botao para confirmar a escola e chamar a tela de nome de jogadores
+        // Botão para confirmar escolha de número de jogadores
         JButton confirmar = new JButton("Confirmar");
+        confirmar.setFont(new Font("Arial", Font.BOLD, 18));
         confirmar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int numeroJogadores = (Integer) comboBox.getSelectedItem();
-                telaEscolha.dispose();  // Fecha a janela
-                //inserirNomesJogadores(numeroJogadores);  // Chama a próxima etapa para inserir os nomes
+                JOptionPane.showMessageDialog(telaInicio, "Número de jogadores: " + numeroJogadores);
+                layout.show(painelPrincipal, "TelaInicial");  // Volta para a tela inicial
             }
         });
+        panelEscolha.add(Box.createRigidArea(new Dimension(0, 20)));  // Espaço
         panelEscolha.add(confirmar);
 
-        // Adicionar o painel de botões ao centro do painel de fundo
-        telaEscolha.add(panelEscolha, BorderLayout.CENTER);
-
-        // Adiciona o painel de fundo (com os botões) ao centro da janela
-        //telaInicio.add(panelFundo, BorderLayout.CENTER);
-
-        telaEscolha.setVisible(true);
+        return panelEscolha;
     }
 
 }
