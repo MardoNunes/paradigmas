@@ -99,13 +99,29 @@ public class Jogo {
         panelEscolha.setLayout(new BoxLayout(panelEscolha, BoxLayout.Y_AXIS));  // Organiza verticalmente
         panelEscolha.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));  // Margens ao redor do painel
 
+
+        JPanel panelBotoes = new JPanel();  // Painel para os botões
+        panelBotoes.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));  // Organiza os botões horizontalmente
+
+        JPanel panelContainer = new JPanel();   // Painel para organizar os componentes
+        panelContainer.setLayout(new BoxLayout(panelContainer, BoxLayout.Y_AXIS));  // Organiza verticalmente 
+
+        panelContainer.add(Box.createRigidArea(new Dimension(0, 20)));  // Espaço
+
         // Label para escolher o número de jogadores
         JLabel label = new JLabel("Selecione o número de jogadores:");
         label.setFont(new Font("Arial", Font.PLAIN, 18));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o label
         panelEscolha.add(label);
 
         Integer[] opcoes = {2, 3, 4, 5, 6};  // Opções de número de jogadores
         JComboBox<Integer> comboBox = new JComboBox<>(opcoes);
+        comboBox.setFont(new Font("Arial", Font.PLAIN, 18));
+        comboBox.setPreferredSize(new Dimension(100, 50));  // Define o tamanho preferido do comboBox
+        comboBox.setMaximumSize(new Dimension(100, 30));
+        comboBox.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o comboBox
+
+
         panelEscolha.add(comboBox);
 
         // Botão para confirmar escolha de número de jogadores
@@ -119,8 +135,26 @@ public class Jogo {
                 layout.show(painelPrincipal, "TelaInicial");  // Volta para a tela inicial
             }
         });
+
+        //botao para voltar a tela inicial
+        JButton voltar = new JButton("Voltar");
+        voltar.setFont(new Font("Arial", Font.BOLD, 18));
+        voltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {    
+                layout.show(painelPrincipal, "TelaInicial");  // Volta para a tela inicial
+            }
+        });
+
         panelEscolha.add(Box.createRigidArea(new Dimension(0, 20)));  // Espaço
-        panelEscolha.add(confirmar);
+        panelEscolha.add(Box.createRigidArea(new Dimension(0, 20)));  // Espaço
+        panelBotoes.add(confirmar);
+        panelBotoes.add(voltar);
+        
+        panelContainer.add(panelBotoes);
+        panelEscolha.add(panelContainer);
+
+
 
         return panelEscolha;
     }
