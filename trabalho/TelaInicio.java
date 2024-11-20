@@ -181,12 +181,17 @@ public class TelaInicio {
                     }
                 }
 
+                Jogo jogo = new Jogo();
+
+                // Acessar o painelPrincipal e o CardLayout dentro de Jogo
+                CardLayout layout = jogo.getCardLayout();
+                JPanel painelPrincipal = jogo.getPainelPrincipal();
                 JOptionPane.showMessageDialog(telaInicio, nomes.toString());
                 layout.show(painelPrincipal, "TelaInicial");  // Volta para a tela inicial
             }
         });
 
-        // Botão para voltar
+        // Botão para voltarx
         JButton voltar = new JButton("Voltar");
         voltar.setFont(new Font("Arial", Font.BOLD, 18));
         voltar.addActionListener(new ActionListener() {
