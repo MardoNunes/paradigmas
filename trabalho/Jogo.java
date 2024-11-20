@@ -1,64 +1,41 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.util.Vector;
 
 public class Jogo {
-    private JFrame janela;
-    private CardLayout cardLayout;
-    private JPanel painelPrincipal;
-    private Tabuleiro tabuleiro;
-    private Jogador jogador;
+    private JPanel painelJogo;  // Painel do jogo
+    private CardLayout layout; // Gerencia as telas internas do jogo
+
 
     public Jogo() {
-        janela = new JFrame("Banco Imobiliário");
-        cardLayout = new CardLayout();
-        painelPrincipal = new JPanel(cardLayout);
+        painelJogo = new JPanel();
+        layout = new CardLayout();
+        painelJogo.setLayout(layout);
 
-        // Inicializa os componentes
-        tabuleiro = new Tabuleiro();
-        jogador = new Jogador("Jogador 1");
-
-        // Adiciona telas
-        painelPrincipal.add(tabuleiro.criarTelaTabuleiro(), "Tabuleiro");
-        painelPrincipal.add(criarTelaAcoes(), "Ações");
-
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setSize(1280, 720);
-        janela.add(painelPrincipal);
-        janela.setVisible(true);
+        // Adicionando telas internas do jogo
+        painelJogo.add(criarTelaTabuleiro(), "TelaTabuleiro");
     }
 
-    // Método para acessar o CardLayout e painelPrincipal
-    public CardLayout getCardLayout() {
-        return cardLayout;
+    // Tela do tabuleiro
+    private JPanel criarTelaTabuleiro() {
+        JPanel painelTabuleiro = new JPanel();
+        painelTabuleiro.setBackground(Color.GREEN); // Cor do fundo representando o tabuleiro
+        painelTabuleiro.setLayout(new BorderLayout());
+
+        JLabel labelTabuleiro = new JLabel("Tabuleiro do Jogo");
+        labelTabuleiro.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTabuleiro.setFont(new Font("Arial", Font.BOLD, 24));
+        painelTabuleiro.add(labelTabuleiro, BorderLayout.CENTER);
+
+        return painelTabuleiro;
     }
 
-    public JPanel getPainelPrincipal() {
-        return painelPrincipal;
+    // Métodos para acessar o painel e o layout
+    public JPanel getPainelJogo() {
+        return painelJogo;
     }
 
-    public void iniciarJogo() {
-        cardLayout.show(painelPrincipal, "Tabuleiro"); // Mostra o tabuleiro primeiro
+    public CardLayout getLayout() {
+        return layout;
     }
-
-    // Método para criar a tela de ações do jogador
-    private JPanel criarTelaAcoes() {
-        JPanel painelAcoes = new JPanel();
-        painelAcoes.setLayout(new BorderLayout());
-
-        // Botão para jogar os dados
-        JButton jogarDadosButton = new JButton("Jogar Dados");
-        jogarDadosButton.addActionListener(e -> {
-            // Logica para jogar os dados e mudar o turno ou a tela
-            JOptionPane.showMessageDialog(janela, "Dados jogados!");
-            cardLayout.show(painelPrincipal, "Tabuleiro"); // Vai para a tela do tabuleiro
-        });
-
-        painelAcoes.add(jogarDadosButton, BorderLayout.CENTER);
-
-        return painelAcoes;
-    }
-
 }
