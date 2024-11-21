@@ -20,7 +20,7 @@ public class TelaInicio {
         // Configurando a janela principal
         this.telaInicio = new JFrame();  // Mantém a variável telaInicio para a janela principal
         telaInicio.setTitle("Banco Imobiliário");
-        telaInicio.setSize(1280, 720);
+        telaInicio.setSize(1920, 1080);
         telaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         telaInicio.setLayout(new BorderLayout());
 
@@ -181,11 +181,11 @@ public class TelaInicio {
             int numeroJogadores = (Integer) comboBox.getSelectedItem();
 
             // Verifica se o número de jogadores é 0
-            if (numeroJogadores == 0) {
-                JOptionPane.showMessageDialog(telaInicio, "Você deve selecionar pelo menos 2 jogadores.");
-                comboBox.setSelectedItem(2);  // Reseta para o número mínimo de jogadores
-                return;
-            }
+            // if (numeroJogadores == 0) {
+            //     JOptionPane.showMessageDialog(telaInicio, "Você deve selecionar pelo menos 2 jogadores.");
+            //     comboBox.setSelectedItem(2);  // Reseta para o número mínimo de jogadores
+            //     return;
+            // }
 
             StringBuilder nomes = new StringBuilder("Nomes dos jogadores:\n");
             
