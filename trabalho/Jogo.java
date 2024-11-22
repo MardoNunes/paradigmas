@@ -13,6 +13,7 @@ public class Jogo {
     private final int LARGURA_TABULEIRO = 800;  // Largura do tabuleiro
     private final int ALTURA_TABULEIRO = 650;  // Altura do tabuleir
     private final int TAMANHO_CASA = 74; // Tamanho de cada casa
+    private final int DIMENSOES_CASA = 120;
 
     public Jogo() {
         painelJogo = new JPanel();
@@ -40,13 +41,16 @@ public class Jogo {
         painelTabuleiro.setBackground(Color.GREEN);
 
         // Painel do tabuleiro (à esquerda)
-        JPanel painelCentralTabuleiro = new JPanel() {
+        JPanel painelCentralTabuleiro = new JPanel()
+        {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Carregar a imagem de fundo (substitua pelo caminho correto da sua imagem)
-                imagemFundo = new ImageIcon("BoardImg.png").getImage();
-                g.drawImage(imagemFundo, 0, 0, getWidth(), getHeight(), this);  // Desenha a imagem de fundo redimensionada
+                
+                //tentar colocar isso em loop para desenha cada casa no tabuleiro
+                //instancia o objt casa, passa a imagem para a função e sua posição
+                imagemFundo = new ImageIcon("./Tabuleiro/1.png").getImage();
+                g.drawImage(imagemFundo, 820, 720, DIMENSOES_CASA, DIMENSOES_CASA, this);  // Desenha a imagem de fundo redimensionada
 
                 // Desenha as peças dos jogadores no tabuleiro
                 g.setColor(Color.RED); // Cor do Jogador 1
@@ -56,9 +60,9 @@ public class Jogo {
                 g.fillOval(jogador2X, jogador2Y, 30, 30); // Desenha a peça do Jogador 2
             }
         };
-        painelCentralTabuleiro.setBackground(Color.LIGHT_GRAY);
+        painelCentralTabuleiro.setBackground(Color.GREEN);
         painelCentralTabuleiro.setLayout(new BorderLayout());
-
+        
         // Painel de informações dos jogadores (no topo à direita)
         JPanel painelInfoJogadores = criarPainelInfoJogadores();
 
