@@ -39,51 +39,38 @@ public class Jogo {
         JPanel painelTabuleiro = new JPanel();
         painelTabuleiro.setLayout(new BorderLayout());
         painelTabuleiro.setBackground(Color.GREEN);
-
-        // Painel do tabuleiro (à esquerda)
-        JPanel painelCentralTabuleiro = new JPanel()
-        {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                
-                //tentar colocar isso em loop para desenha cada casa no tabuleiro
-                //instancia o objt casa, passa a imagem para a função e sua posição
-                imagemFundo = new ImageIcon("./Tabuleiro/1.png").getImage();
-                g.drawImage(imagemFundo, 820, 720, DIMENSOES_CASA, DIMENSOES_CASA, this);  // Desenha a imagem de fundo redimensionada
-
-                // Desenha as peças dos jogadores no tabuleiro
-                g.setColor(Color.RED); // Cor do Jogador 1
-                g.fillOval(jogador1X, jogador1Y, 30, 30); // Desenha a peça do Jogador 1
-                
-                g.setColor(Color.BLUE); // Cor do Jogador 2
-                g.fillOval(jogador2X, jogador2Y, 30, 30); // Desenha a peça do Jogador 2
-            }
-        };
+    
+        // Cria o painel central do tabuleiro
+        JPanel painelCentralTabuleiro = new JPanel();
         painelCentralTabuleiro.setBackground(Color.GREEN);
         painelCentralTabuleiro.setLayout(new BorderLayout());
-        
+    
+        // Cria o tabuleiro e adiciona ao painel central
+        Tabuleiro tabuleiro = new Tabuleiro();
+        painelCentralTabuleiro.add(tabuleiro, BorderLayout.CENTER);
+    
         // Painel de informações dos jogadores (no topo à direita)
         JPanel painelInfoJogadores = criarPainelInfoJogadores();
-
+    
         // Painel de informações do tabuleiro (no rodapé à direita)
         JPanel painelInfoTabuleiro = criarPainelInfoTabuleiro();
-
+    
         // Painel lateral direito (contendo as informações)
         JPanel painelLateralDireito = new JPanel();
         painelLateralDireito.setLayout(new BorderLayout());
         painelLateralDireito.setBackground(Color.WHITE);
         painelLateralDireito.setPreferredSize(new Dimension(500, 500));
-
+    
         painelLateralDireito.add(painelInfoJogadores, BorderLayout.NORTH);
         painelLateralDireito.add(painelInfoTabuleiro, BorderLayout.CENTER);
-
+    
         // Adiciona os painéis ao layout principal
-        painelTabuleiro.add(painelCentralTabuleiro, BorderLayout.CENTER); // Tabuleiro principal
+        painelTabuleiro.add(painelCentralTabuleiro, BorderLayout.CENTER); // Painel com o tabuleiro
         painelTabuleiro.add(painelLateralDireito, BorderLayout.EAST);     // Painéis de informação
-
+    
         return painelTabuleiro;
     }
+    
 
     // Função para criar o painel de informações dos jogadores
     private JPanel criarPainelInfoJogadores() {
