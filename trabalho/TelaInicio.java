@@ -118,7 +118,7 @@ public class TelaInicio {
     labelJogadores.setAlignmentX(Component.CENTER_ALIGNMENT);  // Centraliza o label
     panelEscolha.add(labelJogadores);
 
-    Integer[] opcoes = {0, 2, 3, 4, 5, 6};  // Opções de número de jogadores (inclui 0, mas não permitirá 0)
+    Integer[] opcoes = {0, 2, 3};  // Opções de número de jogadores (inclui 0, mas não permitirá 0)
     JComboBox<Integer> comboBox = new JComboBox<>(opcoes);
     comboBox.setFont(new Font("Arial", Font.PLAIN, 18));
     comboBox.setMaximumSize(new Dimension(100, 30));

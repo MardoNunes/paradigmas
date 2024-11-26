@@ -1,37 +1,50 @@
+import java.util.ArrayList;
+
 public class Jogador {
     private String nome;
-    private int posX, posY; // Posições no tabuleiro
-    private int passos; // Passos no tabuleiro
+    private int posicaoAtual; // Índice da casa no tabuleiro
+    private int dinheiro; // Dinheiro do jogador
+    private boolean falido; // Status de falência
+    private ArrayList<String> propriedades; // Lista de propriedades do jogador
 
-    public Jogador(String nome) {
+    public Jogador(String nome, int dinheiroInicial) {
         this.nome = nome;
-        this.posX = 0;
-        this.posY = 0;
-        this.passos = 0;
-    }
-
-    public void mover(int passos, int colunas, int tamanhoCasa) {
-        this.passos += passos;
-        int novaLinha = this.passos / colunas;
-        int novaColuna = this.passos % colunas;
-
-        this.posX = novaColuna * tamanhoCasa;
-        this.posY = novaLinha * tamanhoCasa;
-    }
-
-    public int getPosX() {
-        return posX;
-    }
-
-    public int getPosY() {
-        return posY;
+        this.dinheiro = dinheiroInicial;
+        this.posicaoAtual = 0; // Começa na casa inicial
+        this.falido = false;
+        this.propriedades = new ArrayList<>();
     }
 
     public String getNome() {
         return nome;
     }
 
-    public int getPassos() {
-        return passos;
+    public int getPosicaoAtual() {
+        return posicaoAtual;
+    }
+
+    public int getDinheiro() {
+        return dinheiro;
+    }
+
+    public boolean isFalido() {
+        return falido;
+    }
+
+    public void mover(int passos, int totalCasas) {
+        posicaoAtual = (posicaoAtual + passos) % totalCasas; // Movimenta no tabuleiro circular
+    }
+
+    public void ajustarDinheiro(int valor) {
+        dinheiro += valor;
+        if (dinheiro < 0) falido = true; // Marca como falido se saldo for negativo
+    }
+
+    public void adicionarPropriedade(String propriedade) {
+        propriedades.add(propriedade);
+    }
+
+    public ArrayList<String> getPropriedades() {
+        return propriedades;
     }
 }
