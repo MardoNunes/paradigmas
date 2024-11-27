@@ -22,6 +22,7 @@ public class TelaInicio {
         this.telaInicio = new JFrame();  // Mantém a variável telaInicio para a janela principal
         telaInicio.setTitle("Banco Imobiliário");
         telaInicio.setSize(1920, 1080);
+        telaInicio.setExtendedState(JFrame.MAXIMIZED_BOTH);  // Maximiza a janela
         telaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         telaInicio.setLayout(new BorderLayout());
 

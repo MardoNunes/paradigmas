@@ -83,5 +83,6 @@ public class CasaTabuleiro extends JPanel {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.PLAIN, 12));
         //g.drawString(nome, 10, 20); // Exibe o nome da casa
+
     }
 }

@@ -32,11 +32,18 @@ public class Jogo {
         Tabuleiro tabuleiro = new Tabuleiro();
         painelCentralTabuleiro.add(tabuleiro, BorderLayout.CENTER);
 
+        Dado dado = new Dado(600, 510);
+        JButton botaoJogar = new JButton("Jogar Dado");
+        painelCentralTabuleiro.add(dado, BorderLayout.CENTER);
+        painelTabuleiro.add(botaoJogar, BorderLayout.SOUTH);
+        botaoJogar.addActionListener(e -> {
+            dado.rollDice();
+            dado.repaint();
+        });
+
+
+
         
-        //Botao de rodar o dado
-       //passar o dado para a função de criar o painel de informações do tabuleiro
-
-
 
     
         // Painel de informações dos jogadores (no topo à direita)
@@ -49,7 +56,7 @@ public class Jogo {
         JPanel painelLateralDireito = new JPanel();
         painelLateralDireito.setLayout(new BorderLayout());
         painelLateralDireito.setBackground(Color.WHITE);
-        painelLateralDireito.setPreferredSize(new Dimension(500, 500));
+        painelLateralDireito.setPreferredSize(new Dimension(650, 500));
     
         painelLateralDireito.add(painelInfoJogadores, BorderLayout.NORTH);
         painelLateralDireito.add(painelInfoTabuleiro, BorderLayout.CENTER);
@@ -68,7 +75,7 @@ public class Jogo {
         painelInfoJogadores.setLayout(new BoxLayout(painelInfoJogadores, BoxLayout.Y_AXIS));
         painelInfoJogadores.setBorder(BorderFactory.createTitledBorder("Informações dos Jogadores"));
         painelInfoJogadores.setBackground(Color.BLUE);
-        painelInfoJogadores.setPreferredSize(new Dimension(200, 450));
+        painelInfoJogadores.setPreferredSize(new Dimension(300, 450));
 
         // Exemplo de informações de jogadores
         JLabel jogador1 = new JLabel("Jogador 1: 1500$");
@@ -87,14 +94,15 @@ public class Jogo {
         JPanel painelInfoTabuleiro = new JPanel();
         painelInfoTabuleiro.setLayout(new BoxLayout(painelInfoTabuleiro, BoxLayout.Y_AXIS));
         painelInfoTabuleiro.setBorder(BorderFactory.createTitledBorder("Informações do Tabuleiro"));
-        painelInfoTabuleiro.setBackground(Color.GRAY);
-        painelInfoTabuleiro.setPreferredSize(new Dimension(200, 250));
+        painelInfoTabuleiro.setBackground(Color.YELLOW);
+        painelInfoTabuleiro.setPreferredSize(new Dimension(300, 250));
 
 
         //apenas mostrar a casa que o jogador caiu e as informações dela
         //depois dar a opção de comprar ou não
         //se comprar, adicionar ao array de propriedades do jogador
         //se não, passar a vez
+
 
 
         // Exemplo de informações do tabuleiro
