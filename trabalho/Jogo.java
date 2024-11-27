@@ -31,6 +31,13 @@ public class Jogo {
         // Cria o tabuleiro e adiciona ao painel central
         Tabuleiro tabuleiro = new Tabuleiro();
         painelCentralTabuleiro.add(tabuleiro, BorderLayout.CENTER);
+
+        
+        //Botao de rodar o dado
+       //passar o dado para a função de criar o painel de informações do tabuleiro
+
+
+
     
         // Painel de informações dos jogadores (no topo à direita)
         JPanel painelInfoJogadores = criarPainelInfoJogadores();
@@ -83,6 +90,13 @@ public class Jogo {
         painelInfoTabuleiro.setBackground(Color.GRAY);
         painelInfoTabuleiro.setPreferredSize(new Dimension(200, 250));
 
+
+        //apenas mostrar a casa que o jogador caiu e as informações dela
+        //depois dar a opção de comprar ou não
+        //se comprar, adicionar ao array de propriedades do jogador
+        //se não, passar a vez
+
+
         // Exemplo de informações do tabuleiro
         JLabel info1 = new JLabel("Rodada Atual: 1");
         info1.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -92,16 +106,10 @@ public class Jogo {
         painelInfoTabuleiro.add(info1);
         painelInfoTabuleiro.add(info2);
 
-        // Botão de rolar os dados
-        // JButton btnRodarDados = new JButton("Rodar Dados");
-        // btnRodarDados.addActionListener(e -> rodarDados());
-
-        //painelInfoTabuleiro.add(btnRodarDados); // Adiciona o botão no painel de informações do tabuleiro
 
         return painelInfoTabuleiro;
     }
 
-  
 
     // Métodos para acessar o painel e o layout
     public JPanel getPainelJogo() {
@@ -111,4 +119,18 @@ public class Jogo {
     public CardLayout getLayout() {
         return layout;
     }
+
+
+     //função que retorna a imagem da casa
+    // //retornando a imagem de uma casa
+    // CasaTabuleiro casa = tabuleiro.getCasasTabuleiro()[0];
+    // System.out.println(casa.getNome());
+    // System.out.println(casa.getValor());
+    // System.out.println(casa.getAluguel());
+    // System.out.println(casa.getCasa());
+
+    // //desenhando a imagem da casa
+    // ImageIcon image = new ImageIcon(casa.getImagem());
+    // JLabel label = new JLabel(image);
+    // painelCentralTabuleiro.add(label);
 }

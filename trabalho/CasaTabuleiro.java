@@ -25,6 +25,53 @@ public class CasaTabuleiro extends JPanel {
         this.imagem = new ImageIcon(imagePath).getImage(); // Carrega a imagem
     }
 
+    //setters
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public void setAluguel(int aluguel) {
+        this.aluguel = aluguel;
+    }
+
+    public void setCasa(int casa) {
+        this.casa = casa;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setProprietario(String proprietario) {
+        this.proprietario = proprietario;
+    }
+
+    //getters
+    public int getValor() {
+        return valor;
+    }
+
+    public int getAluguel() {
+        return aluguel;
+    }
+
+    public int getCasa() {
+        return casa;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getProprietario() {
+        return proprietario;
+    }
+
+    public Image getImagem() {
+        return imagem;
+    }
+
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
