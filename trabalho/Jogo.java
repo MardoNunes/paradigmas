@@ -23,28 +23,62 @@ public class Jogo {
         painelTabuleiro.setLayout(new BorderLayout());
         painelTabuleiro.setBackground(Color.GREEN);
     
-        // Cria o painel central do tabuleiro
+        // Cria o painel central do tabuleiro   
         JPanel painelCentralTabuleiro = new JPanel();
         painelCentralTabuleiro.setBackground(Color.GREEN);
-        painelCentralTabuleiro.setLayout(new BorderLayout());
+        painelCentralTabuleiro.setLayout(null); // Define layout absoluto para controle total
     
         // Cria o tabuleiro e adiciona ao painel central
         Tabuleiro tabuleiro = new Tabuleiro();
-        painelCentralTabuleiro.add(tabuleiro, BorderLayout.CENTER);
+        tabuleiro.setBounds(0, 0, 1200, 1080); // Define o tamanho e posição do tabuleiro
+        painelCentralTabuleiro.add(tabuleiro); // Adiciona o tabuleiro ao painel
 
+
+
+        // Jogador jogador1 = new Jogador("Jogador 1", 1500, Color.RED);
+        // Jogador jogador2 = new Jogador("Jogador 2", 1500, Color.BLUE);
+        
+        // // Adicionar jogadores ao tabuleiro
+        // tabuleiro.adicionarJogador(jogador1);
+        // tabuleiro.adicionarJogador(jogador2);
+
+        // painelCentralTabuleiro.revalidate();
+        // painelCentralTabuleiro.repaint();
+
+        // Cria e jogador - meia boca
+        JPanel jogador = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(Color.RED);
+                g.fillOval(0, 0, 30, 30);
+
+            }
+        };
+        jogador.setBounds(0, 0, 30, 30);
+        painelCentralTabuleiro.add(jogador);
+        tabuleiro.add(jogador);
+
+    
+        // Cria o dado
         Dado dado = new Dado(600, 510);
+        dado.setBounds(600, 510, 80, 80); // Define posição central do dado
+        dado.setBackground(Color.WHITE);
+        painelCentralTabuleiro.add(dado);
+        dado.repaint(); // Desenha o dado
+    
+        // Botão para rolar o dado
         JButton botaoJogar = new JButton("Jogar Dado");
-        painelCentralTabuleiro.add(dado, BorderLayout.CENTER);
-        painelTabuleiro.add(botaoJogar, BorderLayout.SOUTH);
+        botaoJogar.setBounds(600, 600, 120, 40); // Posiciona o botão abaixo do dado
+        painelCentralTabuleiro.add(botaoJogar);
+    
         botaoJogar.addActionListener(e -> {
             dado.rollDice();
-            dado.repaint();
+            dado.repaint(); // Atualiza a exibição do dado
         });
 
 
-
         
-
     
         // Painel de informações dos jogadores (no topo à direita)
         JPanel painelInfoJogadores = criarPainelInfoJogadores();
@@ -56,7 +90,7 @@ public class Jogo {
         JPanel painelLateralDireito = new JPanel();
         painelLateralDireito.setLayout(new BorderLayout());
         painelLateralDireito.setBackground(Color.WHITE);
-        painelLateralDireito.setPreferredSize(new Dimension(650, 500));
+        painelLateralDireito.setPreferredSize(new Dimension(730, 500));
     
         painelLateralDireito.add(painelInfoJogadores, BorderLayout.NORTH);
         painelLateralDireito.add(painelInfoTabuleiro, BorderLayout.CENTER);
@@ -66,7 +100,8 @@ public class Jogo {
         painelTabuleiro.add(painelLateralDireito, BorderLayout.EAST);     // Painéis de informação
     
         return painelTabuleiro;
-    }
+        }
+        
     
 
     // Função para criar o painel de informações dos jogadores
