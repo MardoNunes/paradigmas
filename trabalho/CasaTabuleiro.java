@@ -71,18 +71,8 @@ public class CasaTabuleiro extends JPanel {
         return imagem;
     }
 
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        // Desenha a imagem no tamanho do componente
-        g.drawImage(imagem, 0, 0, getWidth(), getHeight(), this);
-
-        // Opcional: desenhar informações sobre a casa
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.PLAIN, 12));
-        //g.drawString(nome, 10, 20); // Exibe o nome da casa
-
+    public String getImagePath() {
+        return imagePath;
     }
+
 }

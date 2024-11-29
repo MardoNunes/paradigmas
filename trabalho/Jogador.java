@@ -21,6 +21,7 @@ public class Jogador extends JPanel {
 
         // Configuração do JPanel
         this.setOpaque(false); // Torna o fundo transparente
+        this.setPreferredSize(new Dimension(tamanho, tamanho)); // Ajusta o tamanho do JPanel
         this.setBounds(0, 0, tamanho, tamanho); // Define o tamanho inicial do jogador
     }
 
@@ -64,7 +65,5 @@ public class Jogador extends JPanel {
         super.paintComponent(g);
         g.setColor(cor);
         g.fillOval(0, 0, tamanho, tamanho); // Desenha o jogador como um círculo
-        g.setColor(Color.BLACK);
-        g.drawOval(0, 0, tamanho, tamanho); // Borda preta
     }
 }

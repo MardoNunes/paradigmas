@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
+
 
 public class Jogo {
     private JPanel painelJogo;  // Painel do jogo
@@ -33,31 +33,13 @@ public class Jogo {
         tabuleiro.setBounds(0, 0, 1200, 1080); // Define o tamanho e posição do tabuleiro
         painelCentralTabuleiro.add(tabuleiro); // Adiciona o tabuleiro ao painel
 
+        // Cria os jogadores
+        Jogador jogador1 = new Jogador("Jogador 1", 1500, Color.RED);
+        Jogador jogador2 = new Jogador("Jogador 2", 1500, Color.BLUE);
 
-
-        // Jogador jogador1 = new Jogador("Jogador 1", 1500, Color.RED);
-        // Jogador jogador2 = new Jogador("Jogador 2", 1500, Color.BLUE);
-        
-        // // Adicionar jogadores ao tabuleiro
-        // tabuleiro.adicionarJogador(jogador1);
-        // tabuleiro.adicionarJogador(jogador2);
-
-        // painelCentralTabuleiro.revalidate();
-        // painelCentralTabuleiro.repaint();
-
-        // Cria e jogador - meia boca
-        JPanel jogador = new JPanel(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(Color.RED);
-                g.fillOval(0, 0, 30, 30);
-
-            }
-        };
-        jogador.setBounds(0, 0, 30, 30);
-        painelCentralTabuleiro.add(jogador);
-        tabuleiro.add(jogador);
+        // Adicionar jogadores ao tabuleiro
+        tabuleiro.adicionarJogador(jogador1);
+        tabuleiro.adicionarJogador(jogador2);
 
     
         // Cria o dado
@@ -73,7 +55,7 @@ public class Jogo {
         painelCentralTabuleiro.add(botaoJogar);
     
         botaoJogar.addActionListener(e -> {
-            dado.rollDice();
+            dado.rollDice(); // Rola o dado
             dado.repaint(); // Atualiza a exibição do dado
         });
 
