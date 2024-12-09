@@ -31,76 +31,78 @@
             }
 
         public void inicializaCasas() {
+            Jogador banco = new Jogador("Banco", 1000000, Color.BLACK, 0);
+
             // casas de cima
             casa = new ImageIcon("./Tabuleiro/1.png").getImage();
-            casasTabuleiro[0] = new CasaTabuleiro(0, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Início", "Banco", "./Tabuleiro/1.png");
+            casasTabuleiro[0] = new CasaTabuleiro(0, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Início", banco, "./Tabuleiro/1.png");
 
             casa = new ImageIcon("./Tabuleiro/2.png").getImage();
-            casasTabuleiro[1] = new CasaTabuleiro(170, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 1", "Banco", "./Tabuleiro/2.png");
+            casasTabuleiro[1] = new CasaTabuleiro(170, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 1", banco, "./Tabuleiro/2.png");
             
             casa = new ImageIcon("./Tabuleiro/3.png").getImage();
-            casasTabuleiro[2] = new CasaTabuleiro(340, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 2", "Banco", "./Tabuleiro/3.png");
+            casasTabuleiro[2] = new CasaTabuleiro(340, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 2", banco, "./Tabuleiro/3.png");
             
             casa = new ImageIcon("./Tabuleiro/4.png").getImage();
-            casasTabuleiro[3]= new CasaTabuleiro(510, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 3", "Banco", "./Tabuleiro/4.png");
+            casasTabuleiro[3]= new CasaTabuleiro(510, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 3", banco, "./Tabuleiro/4.png");
     
 
             casa = new ImageIcon("./Tabuleiro/19.png").getImage();
-            casasTabuleiro[4] = new CasaTabuleiro(680, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 4", "Banco", "./Tabuleiro/19.png"); //19->5
+            casasTabuleiro[4] = new CasaTabuleiro(680, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 4", banco, "./Tabuleiro/19.png"); //19->5
             
             casa = new ImageIcon("./Tabuleiro/20.png").getImage();
-            casasTabuleiro[5] = new CasaTabuleiro(850, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 5", "Banco", "./Tabuleiro/20.png"); //20->6
+            casasTabuleiro[5] = new CasaTabuleiro(850, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 5", banco, "./Tabuleiro/20.png"); //20->6
             
             casa = new ImageIcon("./Tabuleiro/5.png").getImage();
-            casasTabuleiro[6] = new CasaTabuleiro(1020, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 6", "Banco", "./Tabuleiro/5.png"); //5->7
+            casasTabuleiro[6] = new CasaTabuleiro(1020, 0, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 6", banco, "./Tabuleiro/5.png"); //5->7
             
             //casas da direita
             casa = new ImageIcon("./Tabuleiro/8.png").getImage();
-            casasTabuleiro[7] = new CasaTabuleiro(1020, 170, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 7", "Banco", "./Tabuleiro/8.png");
+            casasTabuleiro[7] = new CasaTabuleiro(1020, 170, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 7", banco, "./Tabuleiro/8.png");
             
             casa = new ImageIcon("./Tabuleiro/9.png").getImage();
-            casasTabuleiro[8] = new CasaTabuleiro(1020, 340, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 8", "Banco", "./Tabuleiro/9.png");
+            casasTabuleiro[8] = new CasaTabuleiro(1020, 340, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 8", banco, "./Tabuleiro/9.png");
             
             casa = new ImageIcon("./Tabuleiro/6.png").getImage();
-            casasTabuleiro[9]= new CasaTabuleiro(1020, 510, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 9", "Banco", "./Tabuleiro/6.png");   //6->10
+            casasTabuleiro[9]= new CasaTabuleiro(1020, 510, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 9", banco, "./Tabuleiro/6.png");   //6->10
             
             casa = new ImageIcon("./Tabuleiro/21.png").getImage();
-            casasTabuleiro[10] = new CasaTabuleiro(1020, 680, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 10", "Banco", "./Tabuleiro/21.png"); //21->11
+            casasTabuleiro[10] = new CasaTabuleiro(1020, 680, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 10", banco, "./Tabuleiro/21.png"); //21->11
            
             casa = new ImageIcon("./Tabuleiro/7.png").getImage();
-            casasTabuleiro[11] = new CasaTabuleiro(1020, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 11", "Banco", "./Tabuleiro/7.png");  //7->12
+            casasTabuleiro[11] = new CasaTabuleiro(1020, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 11", banco, "./Tabuleiro/7.png");  //7->12
             
             //casas de baixo
             casa = new ImageIcon("./Tabuleiro/14.png").getImage();
-            casasTabuleiro[12] = new CasaTabuleiro(850, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 12", "Banco", "./Tabuleiro/14.png");
+            casasTabuleiro[12] = new CasaTabuleiro(850, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 12", banco, "./Tabuleiro/14.png");
             
             casa = new ImageIcon("./Tabuleiro/15.png").getImage();
-            casasTabuleiro[13] = new CasaTabuleiro(680, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 13", "Banco", "./Tabuleiro/15.png");
+            casasTabuleiro[13] = new CasaTabuleiro(680, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 13", banco, "./Tabuleiro/15.png");
            
             casa = new ImageIcon("./Tabuleiro/4.png").getImage();
-            casasTabuleiro[14] = new CasaTabuleiro(510, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 14", "Banco", "./Tabuleiro/4.png");
+            casasTabuleiro[14] = new CasaTabuleiro(510, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 14", banco, "./Tabuleiro/4.png");
             
             casa = new ImageIcon("./Tabuleiro/16.png").getImage();
-            casasTabuleiro[15] = new CasaTabuleiro(340, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 15", "Banco", "./Tabuleiro/16.png");
+            casasTabuleiro[15] = new CasaTabuleiro(340, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 15", banco, "./Tabuleiro/16.png");
            
             casa = new ImageIcon("./Tabuleiro/17.png").getImage();
-            casasTabuleiro[16] = new CasaTabuleiro(170, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 16", "Banco", "./Tabuleiro/17.png");
+            casasTabuleiro[16] = new CasaTabuleiro(170, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 16", banco, "./Tabuleiro/17.png");
             
             casa = new ImageIcon("./Tabuleiro/10.png").getImage();
-            casasTabuleiro[17] = new CasaTabuleiro(0, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 17", "Banco", "./Tabuleiro/10.png");
+            casasTabuleiro[17] = new CasaTabuleiro(0, 850, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 17", banco, "./Tabuleiro/10.png");
          
             //casas da esquerda
             casa = new ImageIcon("./Tabuleiro/11.png").getImage();
-            casasTabuleiro[18] = new CasaTabuleiro(0, 680, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 18", "Banco", "./Tabuleiro/11.png");
+            casasTabuleiro[18] = new CasaTabuleiro(0, 680, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 18", banco, "./Tabuleiro/11.png");
             
             casa = new ImageIcon("./Tabuleiro/12.png").getImage();
-            casasTabuleiro[19] = new CasaTabuleiro(0, 510, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 19", "Banco", "./Tabuleiro/12.png");
+            casasTabuleiro[19] = new CasaTabuleiro(0, 510, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 19", banco, "./Tabuleiro/12.png");
             
             casa = new ImageIcon("./Tabuleiro/13.png").getImage();
-            casasTabuleiro[20] = new CasaTabuleiro(0, 340, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 20", "Banco", "./Tabuleiro/13.png");
+            casasTabuleiro[20] = new CasaTabuleiro(0, 340, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 20", banco, "./Tabuleiro/13.png");
             
             casa = new ImageIcon("./Tabuleiro/6.png").getImage();
-            casasTabuleiro[21] = new CasaTabuleiro(0, 170, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 21", "Banco", "./Tabuleiro/6.png");
+            casasTabuleiro[21] = new CasaTabuleiro(0, 170, TAM_CASA, TAM_CASA, 0, 0, 0, "Casa 21", banco, "./Tabuleiro/6.png");
           
         }
 
@@ -131,6 +133,12 @@
                                     novaCasa.getY() + (TAM_CASA - jogador.getHeight()) / 2);
                 this.repaint(); // Atualiza a exibição do tabuleiro
             }
+        }
+
+        public Point getPosicao(int posicaoAtual, int passos) {
+            int novaPosicao = (posicaoAtual + passos) % casasTabuleiro.length;
+            return new Point(casasTabuleiro[novaPosicao].getX() + (TAM_CASA - 80) / 2,
+                             casasTabuleiro[novaPosicao].getY() + (TAM_CASA - 80) / 2);
         }
         
     }

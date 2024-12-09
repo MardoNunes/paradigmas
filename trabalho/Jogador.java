@@ -10,14 +10,16 @@ public class Jogador extends JPanel {
     private ArrayList<String> propriedades; // Lista de propriedades do jogador
     private Color cor; // Cor do jogador no tabuleiro
     private int tamanho = 30; // Tamanho do jogador no tabuleiro
+    private int vez;    //vez do jogador
 
-    public Jogador(String nome, int dinheiroInicial, Color cor) {
+    public Jogador(String nome, int dinheiroInicial, Color cor, int vez) {
         this.nome = nome;
         this.dinheiro = dinheiroInicial;
         this.posicaoAtual = 0; // Começa na casa inicial
         this.falido = false;
         this.propriedades = new ArrayList<>();
         this.cor = cor;
+        this.vez = vez;
 
         // Configuração do JPanel
         this.setOpaque(false); // Torna o fundo transparente
@@ -35,6 +37,31 @@ public class Jogador extends JPanel {
 
     public int getDinheiro() {
         return dinheiro;
+    }
+
+    public void setDinheiro(int dinheiro) {
+        this.dinheiro = dinheiro;
+    }
+
+    public String getMoney(){
+        //convertendo dinheiro para string
+        return Integer.toString(dinheiro);
+    }
+
+    public int getVez() {
+        return vez;
+    }
+
+    public void setVez(int vez) {
+        this.vez = vez;
+    }
+
+    public Color getCor() {
+        return this.cor;
+    }
+
+    public void getPosicaoAtual(int posicaoAtual) {
+        this.posicaoAtual = posicaoAtual;
     }
 
     public boolean isFalido() {
