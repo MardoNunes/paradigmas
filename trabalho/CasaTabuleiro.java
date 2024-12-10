@@ -19,6 +19,8 @@ public class CasaTabuleiro extends JPanel {
         this.casa = casa;
         this.nome = nome;
         this.proprietario = proprietario;
+        this.valor = valor;
+        this.aluguel = aluguel;
 
         // Configurações do painel
         this.setBounds(x, y, largura, altura); // Define posição e tamanho
@@ -79,7 +81,12 @@ public class CasaTabuleiro extends JPanel {
 
     //verifica se a casa esta comprada
     public boolean isComprada() {
-        return proprietario != null;
+        Jogador aux = new Jogador();
+        aux = getProprietario();
+        if(aux.getNome().equals("Banco")){
+            return false;
+        }
+        return true;
     }
 
     public void setComprada(Boolean comprada) {

@@ -187,36 +187,53 @@ private JPanel criarPainelInfoJogadores(Jogador jogador1, Jogador jogador2) {
         botaoJogar.addActionListener(e -> {
             // Determina o jogador atual com base na vez
             Jogador jogadorAtual = jogadores.stream().filter(j -> j.getVez() == 1).findFirst().orElse(null);
-    
-            if (jogadorAtual != null) {
-                // Rola o dado
-                dado.rollDice();
-                int valorDado = dado.getValor();
-    
-                // Move o jogador atual no tabuleiro
-                jogadorAtual.mover(valorDado, 
-                    tabuleiro.getCasasTabuleiro().length, 
-                    tabuleiro.getPosicao(jogadorAtual.getPosicaoAtual(), valorDado));
-                
-                // Obtém a casa onde o jogador caiu
-                CasaTabuleiro casaAtual = tabuleiro.getCasasTabuleiro()[jogadorAtual.getPosicaoAtual()];
-                atualizarPainelInfoTabuleiro(
-                    (JPanel) painelInfoJogadores.getParent().getComponent(1), // Painel de informações do tabuleiro
-                    jogadorAtual, 
-                    casaAtual
-                );
-                
-    
-                // Atualiza informações visuais dos jogadores
-                atualizarPainelInfoJogadores(painelInfoJogadores);
-    
-                // Passa a vez para o próximo jogador
+            
+            if(jogadorAtual.isPrisao() == true){
+                JOptionPane.showMessageDialog(painelInfoJogadores, "Você está preso, perdeu a vez!");
+                jogadorAtual.setPrisao(false);
                 jogadores.forEach(j -> j.setVez(0)); // Zera todas as jogadas
                 int indiceAtual = jogadores.indexOf(jogadorAtual);
                 jogadores.get((indiceAtual + 1) % jogadores.size()).setVez(1);
-    
-                // Atualiza o dado na interface
-                dado.repaint();
+            }
+            else if(jogadorAtual.isFerias() == true){
+                JOptionPane.showMessageDialog(painelInfoJogadores, "Você está de férias, perdeu a vez!");
+                jogadorAtual.setFerias(false);
+                jogadores.forEach(j -> j.setVez(0)); // Zera todas as jogadas
+                int indiceAtual = jogadores.indexOf(jogadorAtual);
+                jogadores.get((indiceAtual + 1) % jogadores.size()).setVez(1);
+            }
+            else{
+
+                if (jogadorAtual != null) {
+                    // Rola o dado
+                    dado.rollDice();
+                    int valorDado = dado.getValor();
+                
+                    // Move o jogador atual no tabuleiro
+                    jogadorAtual.mover(valorDado, 
+                        tabuleiro.getCasasTabuleiro().length, 
+                        tabuleiro.getPosicao(jogadorAtual.getPosicaoAtual(), valorDado));
+
+                    // Obtém a casa onde o jogador caiu
+                    CasaTabuleiro casaAtual = tabuleiro.getCasasTabuleiro()[jogadorAtual.getPosicaoAtual()];
+                    atualizarPainelInfoTabuleiro(
+                        (JPanel) painelInfoJogadores.getParent().getComponent(1), // Painel de informações do tabuleiro
+                        jogadorAtual, 
+                        casaAtual
+                    );
+
+                
+                    // Atualiza informações visuais dos jogadores
+                    atualizarPainelInfoJogadores(painelInfoJogadores);
+                
+                    // Passa a vez para o próximo jogador
+                    jogadores.forEach(j -> j.setVez(0)); // Zera todas as jogadas
+                    int indiceAtual = jogadores.indexOf(jogadorAtual);
+                    jogadores.get((indiceAtual + 1) % jogadores.size()).setVez(1);
+                
+                    // Atualiza o dado na interface
+                    dado.repaint();
+                }
             }
         });
     }
@@ -287,41 +304,54 @@ private JPanel criarPainelInfoJogadores(Jogador jogador1, Jogador jogador2) {
         JPanel painelOpcoes = new JPanel();
         painelOpcoes.setLayout(new FlowLayout());
         painelOpcoes.setBackground(Color.WHITE);
+
+        if(casaAtual.getCasa() == 1){
+            jogadorAtual.setDinheiro(jogadorAtual.getDinheiro() + 200);
+        }
+        else if(casaAtual.getCasa() == 5){
+            jogadorAtual.setDinheiro(jogadorAtual.getDinheiro() - 200);
+        }
+        else if(casaAtual.getCasa() == 10){
+            jogadorAtual.setPrisao(true);
+        }
+        else if(casaAtual.getCasa() == 7){
+            jogadorAtual.setFerias(false);
+        }
     
         // Opção de comprar a casa, se disponível
-        if (!casaAtual.isComprada()) {
-            JButton botaoComprar = new JButton("Comprar");
-            botaoComprar.addActionListener(e -> {
-                if (jogadorAtual.getDinheiro() >= casaAtual.getValor()) {
-                    jogadorAtual.setDinheiro(jogadorAtual.getDinheiro() - casaAtual.getValor());
-                    casaAtual.setProprietario(jogadorAtual);
-                    casaAtual.setComprada(true);
-                    atualizarPainelInfoTabuleiro(painelInfoTabuleiro, jogadorAtual, casaAtual);
-                    atualizarPainelInfoJogadores((JPanel) painelInfoTabuleiro.getParent().getComponent(0));
-                    JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você comprou a casa: " + casaAtual.getNome());
-                } else {
-                    JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você não tem dinheiro suficiente para comprar esta casa.");
-                }
-            });
-            painelOpcoes.add(botaoComprar);
-        } else if (!casaAtual.getProprietario().equals(jogadorAtual)) {
-            // Opção de pagar aluguel, se a casa pertence a outro jogador
-            JButton botaoPagarAluguel = new JButton("Pagar Aluguel");
-            botaoPagarAluguel.addActionListener(e -> {
-                int aluguel = casaAtual.getAluguel();
-                if (jogadorAtual.getDinheiro() >= aluguel) {
-                    jogadorAtual.setDinheiro(jogadorAtual.getDinheiro() - aluguel);
-                    Jogador proprietario = casaAtual.getProprietario();
-                    proprietario.setDinheiro(proprietario.getDinheiro() + aluguel);
-                    atualizarPainelInfoTabuleiro(painelInfoTabuleiro, jogadorAtual, casaAtual);
-                    atualizarPainelInfoJogadores((JPanel) painelInfoTabuleiro.getParent().getComponent(0));
-                    JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você pagou $" + aluguel + " de aluguel para " + proprietario.getNome());
-                } else {
-                    JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você não tem dinheiro suficiente para pagar o aluguel!");
-                }
-            });
-            painelOpcoes.add(botaoPagarAluguel);
-        }
+            if (!casaAtual.isComprada()) {
+                JButton botaoComprar = new JButton("Comprar");
+                botaoComprar.addActionListener(e -> {
+                    if (jogadorAtual.getDinheiro() >= casaAtual.getValor()) {
+                        jogadorAtual.setDinheiro(jogadorAtual.getDinheiro() - casaAtual.getValor());
+                        casaAtual.setProprietario(jogadorAtual);
+                        casaAtual.setComprada(true);
+                        atualizarPainelInfoTabuleiro(painelInfoTabuleiro, jogadorAtual, casaAtual);
+                        atualizarPainelInfoJogadores((JPanel) painelInfoTabuleiro.getParent().getComponent(0));
+                        JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você comprou a casa: " + casaAtual.getNome());
+                    } else {
+                        JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você não tem dinheiro suficiente para comprar esta casa.");
+                    }
+                });
+                painelOpcoes.add(botaoComprar);
+            } else if (!casaAtual.getProprietario().equals(jogadorAtual) && !casaAtual.getProprietario().getNome().equals("Banco")) {
+                // Opção de pagar aluguel, se a casa pertence a outro jogador
+                JButton botaoPagarAluguel = new JButton("Pagar Aluguel");
+                botaoPagarAluguel.addActionListener(e -> {
+                    int aluguel = casaAtual.getAluguel();
+                    if (jogadorAtual.getDinheiro() >= aluguel) {
+                        jogadorAtual.setDinheiro(jogadorAtual.getDinheiro() - aluguel);
+                        Jogador proprietario = casaAtual.getProprietario();
+                        proprietario.setDinheiro(proprietario.getDinheiro() + aluguel);
+                        atualizarPainelInfoTabuleiro(painelInfoTabuleiro, jogadorAtual, casaAtual);
+                        atualizarPainelInfoJogadores((JPanel) painelInfoTabuleiro.getParent().getComponent(0));
+                        JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você pagou $" + aluguel + " de aluguel para " + proprietario.getNome());
+                    } else {
+                        JOptionPane.showMessageDialog(painelInfoTabuleiro, "Você não tem dinheiro suficiente para pagar o aluguel!");
+                    }
+                });
+                painelOpcoes.add(botaoPagarAluguel);
+            }
     
         // Opção de passar a vez
         JButton botaoPassarVez = new JButton("Passar a Vez");
@@ -337,16 +367,5 @@ private JPanel criarPainelInfoJogadores(Jogador jogador1, Jogador jogador2) {
     }
     
 
-     //função que retorna a imagem da casa
-    // //retornando a imagem de uma casa
-    // CasaTabuleiro casa = tabuleiro.getCasasTabuleiro()[0];
-    // System.out.println(casa.getNome());
-    // System.out.println(casa.getValor());
-    // System.out.println(casa.getAluguel());
-    // System.out.println(casa.getCasa());
 
-    // //desenhando a imagem da casa
-    // ImageIcon image = new ImageIcon(casa.getImagem());
-    // JLabel label = new JLabel(image);
-    // painelCentralTabuleiro.add(label);
 }

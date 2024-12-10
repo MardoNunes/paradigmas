@@ -11,6 +11,8 @@ public class Jogador extends JPanel {
     private Color cor; // Cor do jogador no tabuleiro
     private int tamanho = 30; // Tamanho do jogador no tabuleiro
     private int vez;    //vez do jogador
+    private boolean prisao; //status de prisao;
+    private boolean ferias; //status de ferias;
 
     public Jogador(String nome, int dinheiroInicial, Color cor, int vez) {
         this.nome = nome;
@@ -20,12 +22,16 @@ public class Jogador extends JPanel {
         this.propriedades = new ArrayList<>();
         this.cor = cor;
         this.vez = vez;
+        this.prisao = false;
+        this.ferias = false;
 
         // Configuração do JPanel
         this.setOpaque(false); // Torna o fundo transparente
         this.setPreferredSize(new Dimension(tamanho, tamanho)); // Ajusta o tamanho do JPanel
         this.setBounds(0, 0, tamanho, tamanho); // Define o tamanho inicial do jogador
     }
+
+    public Jogador(){}
 
     public String getNome() {
         return nome;
@@ -62,6 +68,22 @@ public class Jogador extends JPanel {
 
     public void getPosicaoAtual(int posicaoAtual) {
         this.posicaoAtual = posicaoAtual;
+    }
+
+    public boolean isPrisao() {
+        return prisao;
+    }
+
+    public void setPrisao(boolean prisao) {
+        this.prisao = prisao;
+    }
+
+    public boolean isFerias() {
+        return ferias;
+    }
+
+    public void setFerias(boolean ferias) {
+        this.ferias = ferias;
     }
 
     public boolean isFalido() {
