@@ -8,6 +8,8 @@ public class CasaTabuleiro extends JPanel {
     private int casa; // Número de casas construídas
     private String nome; // Nome da casa
     private Jogador proprietario;
+    private String nomeProprietario;
+    private boolean comprada;
 
     private Image imagem; // Imagem da casa
 
@@ -21,6 +23,7 @@ public class CasaTabuleiro extends JPanel {
         this.proprietario = proprietario;
         this.valor = valor;
         this.aluguel = aluguel;
+        this.comprada = false;
 
         // Configurações do painel
         this.setBounds(x, y, largura, altura); // Define posição e tamanho
@@ -79,15 +82,6 @@ public class CasaTabuleiro extends JPanel {
         return imagePath;
     }
 
-    //verifica se a casa esta comprada
-    public boolean isComprada() {
-        Jogador aux = new Jogador();
-        aux = getProprietario();
-        if(aux.getNome().equals("Banco")){
-            return false;
-        }
-        return true;
-    }
 
     public void setComprada(Boolean comprada) {
         if (comprada) {
@@ -95,6 +89,21 @@ public class CasaTabuleiro extends JPanel {
         } else {
             proprietario = new Jogador("Banco", 1000000, Color.BLACK, 0);
         }
+    }
+    public void setNomeProprietario(String nome){
+        this.nomeProprietario = nome;
+    }
+
+    public String getNomeProprietario(){
+        return nomeProprietario;
+    }
+
+    public void setComprada(boolean comprada) {
+        this.comprada = comprada;
+    }
+
+    public boolean isComprada() {
+        return comprada;
     }
 
 }

@@ -10,14 +10,21 @@ CLASSES = $(SOURCES:.java=.class)
 # Variável para o compilador Java
 JAVAC = javac
 
-# Alvo principal para compilar o programa
-all: $(MAIN)
+# Variável para o comando Java
+JAVA = java
+
+# Alvo principal para compilar e executar o programa
+all: $(MAIN) run
 
 # Compilar o arquivo principal e dependências
 $(MAIN): $(CLASSES)
 
 %.class: %.java
 	$(JAVAC) $<
+
+# Executa o programa
+run:
+	$(JAVA) $(MAIN)
 
 # Limpa os arquivos .class
 clean:
