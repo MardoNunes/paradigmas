@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class TelaInicio {
+    private static TelaInicio instancia; // Instância única da classe
+
     private JFrame telaInicio;  // Mantém a tela inicial
     private JPanel painelPrincipal;  // Painel principal que conterá as diferentes "telas"
     private CardLayout layout;  // Layout que gerencia as trocas de telas
@@ -14,9 +16,8 @@ public class TelaInicio {
     private Image imagemFundo;
     private Jogo jogo;
 
-    Vector<String> nomesJogadores = new Vector<>();  // Cria o Vector para armazenar os nomes
-
-    public TelaInicio() {
+    // Construtor privado para evitar criação externa
+    private TelaInicio() {
         // Configurando a janela principal
         this.telaInicio = new JFrame();  // Mantém a variável telaInicio para a janela principal
         telaInicio.setTitle("Banco Imobiliário");
@@ -31,14 +32,20 @@ public class TelaInicio {
 
         jogo = new Jogo();
 
-
         // Adiciona a primeira tela (tela inicial)
         painelPrincipal.add(criarTelaInicial(), "TelaInicial");
-
 
         // Adiciona o painel principal ao JFrame
         telaInicio.add(painelPrincipal);
         telaInicio.setVisible(true);
+    }
+
+    // Método estático para obter a instância única
+    public static TelaInicio getInstance() {
+        if (instancia == null) {
+            instancia = new TelaInicio();
+        }
+        return instancia;
     }
 
     // Método para criar a tela inicial
@@ -99,5 +106,4 @@ public class TelaInicio {
 
         return panelFundo;
     }
-
 }

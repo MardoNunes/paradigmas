@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Jogador extends JPanel {
+public class Jogador extends JPanel implements Iterable<String> {
     private String nome;
     private int posicaoAtual; // Índice da casa no tabuleiro
     private int dinheiro; // Dinheiro do jogador
@@ -10,9 +11,9 @@ public class Jogador extends JPanel {
     private ArrayList<String> propriedades; // Lista de propriedades do jogador
     private Color cor; // Cor do jogador no tabuleiro
     private int tamanho = 30; // Tamanho do jogador no tabuleiro
-    private int vez;    //vez do jogador
-    private boolean prisao; //status de prisao;
-    private boolean ferias; //status de ferias;
+    private int vez;    // Vez do jogador
+    private boolean prisao; // Status de prisão
+    private boolean ferias; // Status de férias
 
     public Jogador(String nome, int dinheiroInicial, Color cor, int vez) {
         this.nome = nome;
@@ -31,7 +32,7 @@ public class Jogador extends JPanel {
         this.setBounds(0, 0, tamanho, tamanho); // Define o tamanho inicial do jogador
     }
 
-    public Jogador(){}
+    public Jogador() {}
 
     public String getNome() {
         return nome;
@@ -49,8 +50,8 @@ public class Jogador extends JPanel {
         this.dinheiro = dinheiro;
     }
 
-    public String getMoney(){
-        //convertendo dinheiro para string
+    public String getMoney() {
+        // Convertendo dinheiro para string
         return Integer.toString(dinheiro);
     }
 
@@ -109,10 +110,48 @@ public class Jogador extends JPanel {
         return propriedades;
     }
 
+    public void declararFalencia() {
+        falido = true;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(cor);
         g.fillOval(0, 0, tamanho, tamanho); // Desenha o jogador como um círculo
+    }
+
+    // Implementação do padrão Iterator
+    @Override
+    public Iterator<String> iterator() {
+        return new PropriedadeIterator();
+    }
+
+    // Classe interna para implementar o Iterator
+    private class PropriedadeIterator implements Iterator<String> {
+        private int indiceAtual = 0; // Índice atual na lista de propriedades
+
+        @Override
+        public boolean hasNext() {
+            return indiceAtual < propriedades.size();
+        }
+
+        @Override
+        public String next() {
+            if (!hasNext()) {
+                throw new IllegalStateException("Não há mais propriedades para iterar.");
+            }
+            return propriedades.get(indiceAtual++);
+        }
+    }
+
+    // Método estático para verificar o vencedor
+    public static Jogador verificarVencedor(ArrayList<Jogador> jogadores) {
+        for (Jogador jogador : jogadores) {
+            if (!jogador.isFalido()) {
+                return jogador;
+            }
+        }
+        return null; // Retorna null se todos os jogadores estiverem falidos
     }
 }

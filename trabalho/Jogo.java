@@ -109,7 +109,7 @@ private JPanel criarPainelInfoJogadores(Jogador jogador1, Jogador jogador2) {
     painelInfoJogadores.setLayout(new GridLayout(1, 2, 10, 0)); // 1 linha, 2 colunas com espaçamento horizontal
     painelInfoJogadores.setBorder(BorderFactory.createTitledBorder("Informações dos Jogadores"));
     painelInfoJogadores.setBackground(Color.WHITE);
-    painelInfoJogadores.setPreferredSize(new Dimension(600, 300)); // Largura e altura ajustadas
+    painelInfoJogadores.setPreferredSize(new Dimension(00, 300)); // Largura e altura ajustadas
 
     // Painel para o jogador 1
     JPanel painelJogador1 = new JPanel();

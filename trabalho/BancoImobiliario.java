@@ -3,7 +3,7 @@
 class BancoImobiliario{
     
     public static void main(String[] args) {
-        TelaInicio jogo = new TelaInicio();
+        TelaInicio jogo = TelaInicio.getInstance();
 
     }
 }

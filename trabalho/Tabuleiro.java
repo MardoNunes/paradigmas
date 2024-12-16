@@ -44,7 +44,7 @@
             casasTabuleiro[2] = new CasaTabuleiro(340, 0, TAM_CASA, TAM_CASA, 900,80, 3, "Rua das Banquetas ", banco, "./Tabuleiro/3.png");
             
             casa = new ImageIcon("./Tabuleiro/4.png").getImage();
-            casasTabuleiro[3]= new CasaTabuleiro(510, 0, TAM_CASA, TAM_CASA, 0, 0, 4, "Sorte&Azar", banco, "./Tabuleiro/4.png");
+            casasTabuleiro[3]= new CasaTabuleiro(510, 0, TAM_CASA, TAM_CASA, 5000, 700, 4, "Super Avenida das Mobílias", banco, "./Tabuleiro/22.png");
     
 
             casa = new ImageIcon("./Tabuleiro/19.png").getImage();
@@ -64,7 +64,7 @@
             casasTabuleiro[8] = new CasaTabuleiro(1020, 340, TAM_CASA, TAM_CASA, 750, 80, 9, "Caminho da Poltrona", banco, "./Tabuleiro/9.png");
             
             casa = new ImageIcon("./Tabuleiro/6.png").getImage();
-            casasTabuleiro[9]= new CasaTabuleiro(1020, 510, TAM_CASA, TAM_CASA, 0, 0, 6, "?", banco, "./Tabuleiro/6.png");   //6->10
+            casasTabuleiro[9]= new CasaTabuleiro(1020, 510, TAM_CASA, TAM_CASA, 5000, 700, 6, "Super Caminho das Mobílias", banco, "./Tabuleiro/23.png");   //6->10
             
             casa = new ImageIcon("./Tabuleiro/21.png").getImage();
             casasTabuleiro[10] = new CasaTabuleiro(1020, 680, TAM_CASA, TAM_CASA, 5000, 700, 21, "Super Rua das Mobílias", banco, "./Tabuleiro/21.png"); //21->11
@@ -80,7 +80,7 @@
             casasTabuleiro[13] = new CasaTabuleiro(680, 850, TAM_CASA, TAM_CASA, 1100, 250, 15, "Boca do Fogão", banco, "./Tabuleiro/15.png");
            
             casa = new ImageIcon("./Tabuleiro/4.png").getImage();
-            casasTabuleiro[14] = new CasaTabuleiro(510, 850, TAM_CASA, TAM_CASA, 0, 0, 4, "Sorte&Azar", banco, "./Tabuleiro/4.png");
+            casasTabuleiro[14] = new CasaTabuleiro(510, 850, TAM_CASA, TAM_CASA, 5000, 700, 4, "Super Estrada das Mobílias", banco, "./Tabuleiro/24.png");
             
             casa = new ImageIcon("./Tabuleiro/16.png").getImage();
             casasTabuleiro[15] = new CasaTabuleiro(340, 850, TAM_CASA, TAM_CASA, 1100, 200, 16, "Cadeiras Gamer", banco, "./Tabuleiro/16.png");
@@ -102,7 +102,7 @@
             casasTabuleiro[20] = new CasaTabuleiro(0, 340, TAM_CASA, TAM_CASA, 999, 100, 13, "Rua dos Colchonetes", banco, "./Tabuleiro/13.png");
             
             casa = new ImageIcon("./Tabuleiro/6.png").getImage();
-            casasTabuleiro[21] = new CasaTabuleiro(0, 170, TAM_CASA, TAM_CASA, 0, 0, 6, "?", banco, "./Tabuleiro/6.png");
+            casasTabuleiro[21] = new CasaTabuleiro(0, 170, TAM_CASA, TAM_CASA, 5000, 700, 6, "Super Rua das Mobílias", banco, "./Tabuleiro/26.png");
           
         }
 
